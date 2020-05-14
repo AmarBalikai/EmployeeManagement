@@ -11,4 +11,7 @@
     <string name="device_not_connected_to_internet">"Device not connected to internet "</string>
     <string name="employee_salary">"Salary : "</string>
     <string name="employee_age">Age : </string>
+    <string name="name">Name</string>
+    <string name="salary">Salary</string>
+    <string name="age">Age</string>
 </resources>

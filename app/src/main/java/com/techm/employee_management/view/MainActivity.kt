@@ -1,10 +1,9 @@
-package com.techm.employee_management
+package com.techm.employee_management.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
-import android.view.MenuItem
-import com.techm.employee_management.utils.toast
+import com.techm.employee_management.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 

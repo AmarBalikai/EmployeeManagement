@@ -1,12 +1,9 @@
-package com.techm.employee_management
+package com.techm.employee_management.view
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
+import com.techm.employee_management.R
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -28,4 +25,13 @@ class AddEmployee : Fragment() {
             findNavController().navigate(R.id.action_AddEmployee_to_EmployeeInformation)
         }*/
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+      //  menu.findItem(R.id.action_EmployeeInformation_to_AddEmployee).isVisible = false
+    }
+
 }

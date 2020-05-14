@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".AddEmployee">
+        tools:context=".view.AddEmployee">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/country_list"

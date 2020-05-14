@@ -1,4 +1,4 @@
-package com.techm.employee_management
+package com.techm.employee_management.view
 
 import android.app.AlertDialog
 import android.content.Context
@@ -10,12 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.techm.employee_management.R
 import com.techm.employee_management.adapter.AdapterBlog
-import com.techm.employee_management.utils.Constant
-import com.techm.employee_management.utils.NetworkConnection
-import com.techm.employee_management.utils.ResponseStatus
-import com.techm.employee_management.utils.toast
+import com.techm.employee_management.utils.*
 import com.techm.employee_management.viewmodel.ViewModelEmployeeInformation
 import kotlinx.android.synthetic.main.fragment_employee_information.*
 import kotlinx.android.synthetic.main.fragment_employee_information.view.*
@@ -24,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_employee_information.view.*
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class EmployeeInformation : Fragment() {
+class EmployeeInformation : Fragment(), View.OnClickListener {
 
     private lateinit var mDataViewModel: ViewModelEmployeeInformation
     private lateinit var mAdapter: AdapterBlog
@@ -51,10 +52,29 @@ class EmployeeInformation : Fragment() {
         /**
          * Setting blank adapter for initialize
          */
+        view.country_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         mAdapter = AdapterBlog(ArrayList(), context)
         linearLayoutManager = LinearLayoutManager(activity)
         view.country_list.layoutManager = linearLayoutManager
         view.country_list.adapter = mAdapter
+
+
+        val swipeHandler = object : SwipeToDeleteCallback(context) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+                mAdapter.removeAt(viewHolder.adapterPosition)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(view.country_list)
 
         /**
          * API Live data observer
@@ -80,7 +100,7 @@ class EmployeeInformation : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -173,5 +193,9 @@ class EmployeeInformation : Fragment() {
     override fun onResume() {
         super.onResume()
         getCountryFeaturesData(context)
+    }
+
+    override fun onClick(v: View?) {
+
     }
 }

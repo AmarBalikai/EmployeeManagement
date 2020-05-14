@@ -34,6 +34,10 @@ class AdapterBlog(private var items: ArrayList<ModelEmployeeInformation>, privat
                 .into(holder.imageBlog)
 */
     }
+    fun removeAt(position: Int) {
+        this.items.removeAt(position)
+        notifyItemRemoved(position)
+    }
     fun setList(dataInformation: ArrayList<ModelEmployeeInformation>)
     {
         this.items=dataInformation
