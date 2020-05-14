@@ -11,8 +11,8 @@ import com.techm.employee_management.R
 class AddEmployee : Fragment() {
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_employee, container, false)
@@ -21,17 +21,19 @@ class AddEmployee : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       /* view.findViewById<Button>(R.id.button_second).setOnClickListener {
-            findNavController().navigate(R.id.action_AddEmployee_to_EmployeeInformation)
-        }*/
+        /* view.findViewById<Button>(R.id.button_second).setOnClickListener {
+             findNavController().navigate(R.id.action_AddEmployee_to_EmployeeInformation)
+         }*/
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-      //  menu.findItem(R.id.action_EmployeeInformation_to_AddEmployee).isVisible = false
+        //  menu.findItem(R.id.action_EmployeeInformation_to_AddEmployee).isVisible = false
     }
 
 }
