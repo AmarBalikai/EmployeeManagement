@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Employee Information</string>
+    <string name="action_add">Add</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="employee_information_label">Employee Information</string>
+    <string name="add_employee_label">Add Employee</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="device_not_connected_to_internet">"Device not connected to internet "</string>
+    <string name="employee_salary">"Salary : "</string>
+    <string name="employee_age">Age : </string>
+</resources>
