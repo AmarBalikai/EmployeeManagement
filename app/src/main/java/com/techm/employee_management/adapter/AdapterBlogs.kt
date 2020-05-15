@@ -4,17 +4,29 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.techm.employee_management.R
 import com.techm.employee_management.model.ModelEmployeeInformation
 import kotlinx.android.synthetic.main.item_layout.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class AdapterBlog(private var items: ArrayList<ModelEmployeeInformation>, private val context: Context?) : RecyclerView.Adapter<ViewHolder>() {
+class AdapterBlog : RecyclerView.Adapter<ViewHolder> {
+    private var itemsList = ArrayList<ModelEmployeeInformation>()
+    private var items = ArrayList<ModelEmployeeInformation>()
+    lateinit var context: Context
 
     // Gets the number of blog in the list
+    constructor(items: ArrayList<ModelEmployeeInformation>, context: Context?) {
+        this.items = items
+        if (context != null) {
+            this.context = context
+        }
+        itemsList.addAll(items)
+    }
+
     override fun getItemCount(): Int {
         return items.size
     }
@@ -26,27 +38,46 @@ class AdapterBlog(private var items: ArrayList<ModelEmployeeInformation>, privat
 
     // Binds each object in the ArrayList to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //holder.authorName.text = items[position].employee_name
+        holder.employeeName.text = items[position].employee_name
+        holder.employeeSalary.text = items[position].employee_salary
+        holder.employeeAge.text = items[position].employee_age
 
-            /*Glide.with(context)
-                .load(items[position].)
-                .placeholder(R.drawable.no_image)
-                .into(holder.imageBlog)
-*/
     }
+
     fun removeAt(position: Int) {
         this.items.removeAt(position)
         notifyItemRemoved(position)
     }
-    fun setList(dataInformation: ArrayList<ModelEmployeeInformation>)
-    {
-        this.items=dataInformation
+
+    fun getItemAtPosition(position: Int): ModelEmployeeInformation {
+        return this.items[position]
+    }
+
+    fun setList(dataInformation: ArrayList<ModelEmployeeInformation>) {
+        this.items = dataInformation
+        itemsList.addAll(items)
+        notifyDataSetChanged()
+    }
+
+    fun filter(charText: String) {
+        var charText = charText
+        charText = charText.toLowerCase(Locale.getDefault())
+        items.clear()
+        if (charText.isEmpty()) {
+            items.addAll(itemsList)
+        } else {
+            for (wp in itemsList) {
+                if (wp.employee_name.toLowerCase(Locale.getDefault()).contains(charText)) {
+                    items.add(wp)
+                }
+            }
+        }
         notifyDataSetChanged()
     }
 }
 
-class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-
-   /* val authorName: TextView = view.authorName
-    val imageBlog:ImageView=view.imageBlog*/
+class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val employeeName: TextView = view.employeeName
+    val employeeSalary: TextView = view.employee_salary
+    val employeeAge: TextView = view.employee_age
 }

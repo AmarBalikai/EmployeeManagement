@@ -31,7 +31,7 @@ class ViewModelAddEmployee(@NotNull application: Application) :
      * Calling API
      */
     fun insertEmployee(employeeInformation: ModelEmployeeRegistration) {
-        repositoryViewModel.insertEmployee(employeeInformation,this)
+        repositoryViewModel.insertEmployee(employeeInformation, this)
     }
 
     /**
@@ -48,16 +48,20 @@ class ViewModelAddEmployee(@NotNull application: Application) :
     override fun onSuccess(data: ModelEmployeeServerResponse) {
         mBlogResponse.value = data
     }
+
     /**
      * API failure response
      * */
     override fun onError(error: String?) {
-        mBlogResponse.value = ModelEmployeeServerResponse( error.toString(), ResponseStatus.FAIL,ArrayList())
+        mBlogResponse.value =
+            ModelEmployeeServerResponse(
+                error.toString(),
+                ResponseStatus.FAIL,
+                ModelEmployeeRegistration("", "", "")
+            )
         /*mBlogResponseStatus.value =
             ModelServerResponse(ArrayList(), error.toString(), ResponseStatus.FAIL)*/
     }
-
-
 
 
 }
