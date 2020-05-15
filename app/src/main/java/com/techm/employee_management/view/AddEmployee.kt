@@ -17,9 +17,8 @@ import com.techm.employee_management.viewmodel.ViewModelAddEmployee
 import kotlinx.android.synthetic.main.fragment_add_employee.*
 import kotlinx.android.synthetic.main.fragment_add_employee.view.*
 
-
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * A simple [Fragment] for adding the employee
  */
 class AddEmployee : Fragment() {
     private lateinit var mDataViewModel: ViewModelAddEmployee
@@ -39,9 +38,12 @@ class AddEmployee : Fragment() {
         setupProgressDialog()
 
         view.buttonSave.setOnClickListener {
-            btnValidateInputClick()
+            saveEmployeeRecord()
         }
-        mDataViewModel.mBlogResponse.observe(viewLifecycleOwner, Observer {
+        /**
+         * Observer for API response
+         * */
+        mDataViewModel.mEmployeeResponse.observe(viewLifecycleOwner, Observer {
             hideProgressDialog()
             when (it.status) {
                 ResponseStatus.SUCCESS -> {
@@ -60,13 +62,8 @@ class AddEmployee : Fragment() {
         return view
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /* view.findViewById<Button>(R.id.button_second).setOnClickListener {
-             findNavController().navigate(R.id.action_AddEmployee_to_EmployeeInformation)
-         }*/
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,7 +73,6 @@ class AddEmployee : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        //  menu.findItem(R.id.action_EmployeeInformation_to_AddEmployee).isVisible = false
     }
 
     private fun clearText() {
@@ -85,21 +81,21 @@ class AddEmployee : Fragment() {
         textFieldAge.editText!!.setText("")
     }
 
-    private fun btnValidateInputClick() {
+    private fun saveEmployeeRecord() {
         val strName = textFieldName.editText!!.text.toString()
         val strSalary = textFieldSalary.editText!!.text.toString()
         val strAge = textFieldAge.editText!!.text.toString()
         when {
             TextUtils.isEmpty(strName) -> {
-                textFieldName.error = "Input required"
+                textFieldName.error = getString(R.string.input_required)
                 textFieldName.isErrorEnabled = true
             }
             TextUtils.isEmpty(strSalary) -> {
-                textFieldSalary.error = "Input required"
+                textFieldSalary.error = getString(R.string.input_required)
                 textFieldSalary.isErrorEnabled = true
             }
             TextUtils.isEmpty(strAge) -> {
-                textFieldAge.error = "Input required"
+                textFieldAge.error = getString(R.string.input_required)
                 textFieldAge.isErrorEnabled = true
             }
             else -> {
@@ -139,5 +135,4 @@ class AddEmployee : Fragment() {
             dialog.dismiss()
         }
     }
-
 }

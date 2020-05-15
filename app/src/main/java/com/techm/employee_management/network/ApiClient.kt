@@ -7,10 +7,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
 
-
+    /**
+     * Base URL
+     * */
     private const val API_BASE_URL = "http://dummy.restapiexample.com/"
 
     private var servicesApiInterface: ApiInterface? = null
+
     /**
      * This method is initialize for retrofit object
      * @return ApiInterface instance

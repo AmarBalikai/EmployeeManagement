@@ -42,9 +42,11 @@ class RepositoryViewModel {
                 objCallback.onError(t.message)
             }
         })
-
     }
 
+    /**
+     * This method for delete the employee
+     * */
     fun deleteEmployee(employeeID: String, objCallback: ResponseCallback<Any>) {
         var listResponse: ModelDeleteEmployee;
 
@@ -55,24 +57,18 @@ class RepositoryViewModel {
                 response: Response<ModelDeleteEmployee>
             ) {
                 if (response.isSuccessful) {
-                    if(response.body()?.status.equals("success"))
-                    {
+                    if (response.body()?.status.equals("success")) {
                         listResponse = response.body()!!
                         listResponse.apiStatus = ResponseStatus.SUCCESS
                         /**
                          * Send success response to viewModel using this callback
                          */
                         objCallback.onSuccess(listResponse)
-                    }
-                    else
-                    {
+                    } else {
                         objCallback.onError(response.body()?.message)
                     }
-
                 }
-
             }
-
             override fun onFailure(call: Call<ModelDeleteEmployee>, t: Throwable) {
                 /**
                  * Send failure response to viewModel
@@ -80,9 +76,11 @@ class RepositoryViewModel {
                 objCallback.onError(t.message)
             }
         })
-
     }
 
+    /**
+     * This method for insert employee
+     * */
     fun insertEmployee(
         employeeData: ModelEmployeeRegistration,
         objCallback: ResponseCallback<ModelEmployeeServerResponse>
@@ -113,6 +111,5 @@ class RepositoryViewModel {
                 objCallback.onError(t.message)
             }
         })
-
     }
 }

@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.techm.employee_management.R
-import com.techm.employee_management.adapter.AdapterBlog
+import com.techm.employee_management.adapter.AdapterEmployeeInformation
 import com.techm.employee_management.model.ModelEmployeeInformation
 import com.techm.employee_management.utils.*
 import com.techm.employee_management.viewmodel.ViewModelEmployeeInformation
@@ -26,12 +26,12 @@ import kotlinx.android.synthetic.main.fragment_employee_information.view.*
 
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * A simple [Fragment] for showing employee list.
  */
 class EmployeeInformation : Fragment(), View.OnClickListener {
 
     private lateinit var mDataViewModel: ViewModelEmployeeInformation
-    private lateinit var mAdapter: AdapterBlog
+    private lateinit var mAdapter: AdapterEmployeeInformation
     private lateinit var builder: AlertDialog.Builder
     private lateinit var dialog: AlertDialog
     private var isSwipeToRefreshCall: Boolean = false
@@ -54,41 +54,26 @@ class EmployeeInformation : Fragment(), View.OnClickListener {
             isSwipeToRefreshCall = true
             getCountryFeaturesData(context)
         }
-
-        /*view.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-
-                query?.let { mAdapter.filter(it) }
-
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })*/
         view.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Log.i("Search","Press querysubmit")
-
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                Log.i("Search","Press querytextchange")
-                newText?.let { mAdapter.filter(it) }
+                newText.let { mAdapter.filter(it) }
                 return true
             }
         })
-        /**
-         * Setting blank adapter for initialize
-         */
+
         view.country_list.addItemDecoration(
             DividerItemDecoration(
                 context,
                 DividerItemDecoration.VERTICAL
             )
         )
-        mAdapter = AdapterBlog(ArrayList(), context)
+        /**
+         * Setting blank adapter for initialize
+         */
+        mAdapter = AdapterEmployeeInformation(ArrayList(), context)
         linearLayoutManager = LinearLayoutManager(activity)
         view.country_list.layoutManager = linearLayoutManager
         view.country_list.adapter = mAdapter

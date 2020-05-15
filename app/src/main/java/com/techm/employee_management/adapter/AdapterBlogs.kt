@@ -12,13 +12,14 @@ import kotlinx.android.synthetic.main.item_layout.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-
-class AdapterBlog : RecyclerView.Adapter<ViewHolder> {
+/**
+ * This class for creating items in recycler view
+ * */
+class AdapterEmployeeInformation : RecyclerView.Adapter<ViewHolder> {
     private var itemsList = ArrayList<ModelEmployeeInformation>()
     private var items = ArrayList<ModelEmployeeInformation>()
     lateinit var context: Context
 
-    // Gets the number of blog in the list
     constructor(items: ArrayList<ModelEmployeeInformation>, context: Context?) {
         this.items = items
         if (context != null) {
@@ -41,7 +42,6 @@ class AdapterBlog : RecyclerView.Adapter<ViewHolder> {
         holder.employeeName.text = items[position].employee_name
         holder.employeeSalary.text = items[position].employee_salary
         holder.employeeAge.text = items[position].employee_age
-
     }
 
     fun removeAt(position: Int) {
@@ -52,13 +52,17 @@ class AdapterBlog : RecyclerView.Adapter<ViewHolder> {
     fun getItemAtPosition(position: Int): ModelEmployeeInformation {
         return this.items[position]
     }
-
+/**
+ * setting updated list
+ * */
     fun setList(dataInformation: ArrayList<ModelEmployeeInformation>) {
         this.items = dataInformation
         itemsList.addAll(items)
         notifyDataSetChanged()
     }
-
+/**
+ * filter employee list
+ * **/
     fun filter(charText: String) {
         var charText = charText
         charText = charText.toLowerCase(Locale.getDefault())

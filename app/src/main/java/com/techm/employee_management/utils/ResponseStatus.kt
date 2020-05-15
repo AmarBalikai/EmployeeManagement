@@ -1,7 +1,9 @@
 package com.techm.employee_management.utils
 
-enum class ResponseStatus
-{
+/**
+ *This class for checking API status
+ * */
+enum class ResponseStatus {
     SUCCESS,
     FAIL,
     LOADING

@@ -13,6 +13,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.techm.employee_management.R
 
+/**
+ * This class is for creating swap to delete in recyclerView
+ * */
 abstract class SwipeToDeleteCallback(context: Context?) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     private val deleteIcon = ContextCompat.getDrawable(context!!, R.drawable.ic_delete_white_24)

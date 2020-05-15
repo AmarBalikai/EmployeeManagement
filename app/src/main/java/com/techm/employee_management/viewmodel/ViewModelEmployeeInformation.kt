@@ -47,9 +47,6 @@ class ViewModelEmployeeInformation(@NotNull application: Application) :
      * API success response
      * */
 
-    /*override fun onSuccess(data: ModelServerResponse) {
-        mBlogResponse.value = data
-    }*/
     override fun onSuccess(data: Any) {
         if (data is ModelServerResponse) {
             mEmployeeInformationData.value = data
@@ -64,8 +61,6 @@ class ViewModelEmployeeInformation(@NotNull application: Application) :
     override fun onError(error: String?) {
         mEmployeeInformationData.value =
             ModelServerResponse(ArrayList(), error.toString(), ResponseStatus.FAIL)
-        /*mBlogResponseStatus.value =
-            ModelServerResponse(ArrayList(), error.toString(), ResponseStatus.FAIL)*/
     }
 
 

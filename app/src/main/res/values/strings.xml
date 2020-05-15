@@ -23,5 +23,6 @@
     <string name="match_not_found">Match Not Found</string>
     <string name="submit">Submit</string>
     <string name="save">Save</string>
+    <string name="input_required">Input required</string>
 
 </resources>
