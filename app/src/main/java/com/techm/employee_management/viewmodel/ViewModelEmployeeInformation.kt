@@ -25,14 +25,13 @@ class ViewModelEmployeeInformation(@NotNull application: Application) :
     init {
         mEmployeeInformationData.value =
             ModelServerResponse(ArrayList(), "", ResponseStatus.LOADING)
-        //mBlogResponseStatus.value = ModelServerResponse(ArrayList(), "", ResponseStatus.LOADING)
         repositoryViewModel.retrieveBlogData(this)
     }
 
     /**
      * Calling API
      */
-    fun getBlogInformation() {
+    fun getEmployeeInformation() {
         repositoryViewModel.retrieveBlogData(this)
     }
 

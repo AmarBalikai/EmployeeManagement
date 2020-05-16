@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_add_employee.view.*
 /**
  * A simple [Fragment] for adding the employee
  */
-class AddEmployee : Fragment() {
+class AddEmployeeFragment : Fragment() {
     private lateinit var mDataViewModel: ViewModelAddEmployee
     private lateinit var builder: AlertDialog.Builder
     private lateinit var dialog: AlertDialog

@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
@@ -28,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_employee_information.view.*
 /**
  * A simple [Fragment] for showing employee list.
  */
-class EmployeeInformation : Fragment(), View.OnClickListener {
+class EmployeeInformationFragment : Fragment(), View.OnClickListener {
 
     private lateinit var mDataViewModel: ViewModelEmployeeInformation
     private lateinit var mAdapter: AdapterEmployeeInformation
@@ -176,7 +175,7 @@ class EmployeeInformation : Fragment(), View.OnClickListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (NetworkConnection.isNetworkConnected()) {
                 showProgressDialog()
-                mDataViewModel.getBlogInformation()
+                mDataViewModel.getEmployeeInformation()
             } else {
                 if (swipeToRefresh.isRefreshing) {
                     swipeToRefresh.isRefreshing = false
@@ -186,7 +185,7 @@ class EmployeeInformation : Fragment(), View.OnClickListener {
         } else {
             if (NetworkConnection.isNetworkConnectedKitkat()) {
                 showProgressDialog()
-                mDataViewModel.getBlogInformation()
+                mDataViewModel.getEmployeeInformation()
 
             } else {
                 if (swipeToRefresh.isRefreshing) {

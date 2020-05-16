@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * This class is for handling multiple fragment
  * */
-class MainActivity : AppCompatActivity() {
+class ContainerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
